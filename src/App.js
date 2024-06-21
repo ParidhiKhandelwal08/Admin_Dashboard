@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Container } from '@mui/material';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import Table from './components/Table';
+import Chart from './components/Chart';
+import Calendar from './components/Calendar';
+import Kanban from './components/Kanban';
 
-function App() {
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [page, setPage] = useState('Dashboard');
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header toggleSidebar={toggleSidebar} />
+      <Sidebar open={sidebarOpen} toggleSidebar={toggleSidebar} setPage={setPage} />
+      <Container style={{ marginTop: '20px' }}>
+        {page === 'Dashboard' && <Dashboard />}
+        {page === 'Table' && <Table />}
+        {page === 'Chart' && <Chart />}
+        {page === 'Calendar' && <Calendar />}
+        {page === 'Kanban' && <Kanban />}
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
