@@ -2,7 +2,7 @@
   "name": "react-admin-dashboard",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ParidhiKhandelwal08.github.io/Admin_Dahboard",
+  "homepage": "https://ParidhiKhandelwal08.github.io/Admin_Dashboard",
   "dependencies": {
     "@asseinfo/react-kanban": "^2.2.0",
     "@emotion/react": "^11.11.4",
@@ -51,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
